@@ -1,7 +1,7 @@
 CREATE DATABASE bdEstoque
 GO
 
-USE bdEstoque
+	
 
 CREATE TABLE tbCliente (
 	codCliente INT PRIMARY KEY IDENTITY(1,1)
@@ -22,6 +22,7 @@ CREATE TABLE tbVenda (
 CREATE TABLE tbFabricante(
 	codFabricante INT PRIMARY KEY IDENTITY(1,1)
 	,nomeFabricante VARCHAR(100) NOT NULL
+	,contatoFornecedor VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE tbFornecedor(
