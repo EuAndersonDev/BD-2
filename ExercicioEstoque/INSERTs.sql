@@ -1,15 +1,14 @@
-USE bdEstoque;
+USE dbEstoque;
 GO
 
-INSERT INTO tbCliente(nomeCliente, cpfCliente, emailCliente, senhaCliente, sexoCliente, dataNascimentoCliente) 
+INSERT INTO tbCliente(nomeCliente, cpfCliente, emailCliente, sexoCliente, dataNascimentoCliente) 
 VALUES 
-	('Armando Jose Santana', '12345678900', 'armandojsantana@outlook.com', 'senha123', 'M', '1961-02-21')
-	,('Shela Carvalho Leal', '45678909823', 'acarvalho@ig.com.br', 'senha456', 'F', '1978-09-13')
-	,('Carlos Henrique Souza', '76598278299', 'chenrique@ig.com.br', 'senha789', 'M', '1981-09-08')
-	,('Maria Aparecida Souza', '87365309899', 'mapdasouza@outlook.com', 'senha101112', 'F', '1962-07-07')
-	,('Adriana Nogueira Silva', '76354309388', 'drica1977@ig.com.br', 'senha131415', 'F', '1977-04-09')
-	,('Paulo Henrique Silva', '87390123111', 'phaiva80@hotmail.com', 'senha161718', 'M', '1987-02-02');
-
+    ('Armando Jose Santana', '12345678900', 'armandojsantana@outlook.com', 'M', '1961-02-21')
+    ,('Shela Carvalho Leal', '45678909823', 'acarvalho@ig.com.br', 'F', '1978-09-13')
+    ,('Carlos Henrique Souza', '76598278299', 'chenrique@ig.com.br', 'M', '1981-09-08')
+    ,('Maria Aparecida Souza', '87365309899', 'mapdasouza@outlook.com', 'F', '1962-07-07')
+    ,('Adriana Nogueira Silva', '76354309388', 'drica1977@ig.com.br', 'F', '1977-04-09')
+    ,('Paulo Henrique Silva', '87390123111', 'phaiva80@hotmail.com', 'M', '1987-02-02');
 
 INSERT INTO tbFabricante (nomeFabricante) 
 VALUES 
@@ -23,7 +22,7 @@ VALUES
 	,('Asaa', 'Maria Stella')
 	,('Roldão', 'Paulo Céear');
 
-INSERT INTO tbProduto (valorProduto, quantidadeProduto, codFabricante, codFornecedor) 
+INSERT INTO tbProduto (descricaoProduto, valorProduto, quantidadeProduto, codFabricante, codFornecedor) 
 VALUES 
 	('Amaciante Downy', 5.76, 1500, 2,1)
 	,('Amaciante Confort', 4.45, 2300,1,1)
@@ -48,7 +47,7 @@ VALUES
 	,('07-05-2014', 3400, 1)
 	,('05-05-2014', 4000, 2);
 
-INSERT INTO tbItensVenda (codVenda, codProduto, quantidadeItensVenda)
+INSERT INTO tbItensVenda (codVenda, codProduto, quantidadeItensVenda, subTotalItensVenda)
 VALUES
 	(1, 1, 200, 1500)
 	,(1, 2, 300, 3000)
@@ -66,3 +65,5 @@ VALUES
 	,(9, 6, 250, 1700)
 	,(9, 5, 200, 1700)
 	,(10, 4, 1000, 4000);
+
+SELECT * FROM tbItensVenda
