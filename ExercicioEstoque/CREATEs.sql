@@ -1,7 +1,12 @@
 CREATE DATABASE bdEstoque
 GO
 
-	
+USE bdEstoque
+
+CREATE DATABASE teste
+USE teste
+
+DROP DATABASE bdEstoque
 
 CREATE TABLE tbCliente (
 	codCliente INT PRIMARY KEY IDENTITY(1,1)
@@ -27,7 +32,7 @@ CREATE TABLE tbFabricante(
 
 CREATE TABLE tbFornecedor(
 	codFornecedor INT PRIMARY KEY IDENTITY(1,1)
-	,nomeFornecedor VARCHAR(100) NOT NULL
+	,contatoFornecedor VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE tbProduto(
