@@ -24,9 +24,9 @@ SELECT tbAutor.nomeAutor, AVG(tbLivro.numPaginas) AS Media_de_Paginas
 	ORDER BY tbAutor.nomeAutor ASC;
 
 /*Ex4*/
-SELECT tbEditora.nomeEditora, COUNT(tbLivro.codLivro) AS Quantidade_de_Livros
+SELECT COUNT(tbLivro.codLivro) AS Quantidade_de_Livros, tbEditora.nomeEditora
 	FROM tbEditora
-		LEFT JOIN tbLivro 
+		RIGHT JOIN tbLivro 
 			ON tbEditora.codEditora = tbLivro.codEditora
 	GROUP BY tbEditora.nomeEditora
 	ORDER BY tbEditora.nomeEditora DESC;
@@ -36,7 +36,7 @@ SELECT tbAutor.nomeAutor, SUM(tbLivro.numPaginas) AS Soma_de_Paginas
 	FROM tbAutor
 		LEFT JOIN tbLivro 
 			ON tbAutor.codAutor = tbLivro.codAutor
-		WHERE tbAutor.nomeAutor LIKE 'C%'
+		WHERE LEFT(tbAutor.nomeAutor, 1) = 'C'
 	GROUP BY tbAutor.nomeAutor;
 
 /*Ex6*/
@@ -48,12 +48,12 @@ SELECT tbAutor.nomeAutor, COUNT(tbLivro.codLivro) AS Quantidade_de_Livros
 	GROUP BY tbAutor.nomeAutor;
 
 /*Ex7*/
-SELECT tbEditora.nomeEditora, SUM(tbLivro.numPaginas) AS Soma_de_Paginas
-	FROM tbEditora
-		LEFT JOIN tbLivro 
-			ON tbEditora.codEditora = tbLivro.codEditora
-	WHERE tbLivro.numPaginas BETWEEN 200 AND 500
-	GROUP BY tbEditora.nomeEditora;
+SELECT SUM(tbLivro.numPaginas) AS Soma_Paginas, tbEditora.nomeEditora
+	FROM tbLivro
+		RIGHT JOIN tbEditora
+			ON tbLivro.codEditora= tbEditora.codEditora
+		WHERE tbLivro.numPaginas >= 200 AND tbLivro.numPaginas <= 500
+	GROUP BY tbEditora.nomeEditora
 
 /*Ex8*/
 SELECT tbLivro.nomeLivro, tbEditora.nomeEditora, tbAutor.nomeAutor
@@ -77,7 +77,7 @@ SELECT tbLivro.nomeLivro, tbAutor.nomeAutor
 	FROM tbLivro
 		INNER JOIN tbAutor 
 			ON tbLivro.codAutor = tbAutor.codAutor
-	WHERE tbAutor.nomeAutor <> 'Érico Veríssimo';
+	WHERE tbAutor.nomeAutor != 'Érico Veríssimo';
 
 /*Ex11*/
 SELECT tbAutor.nomeAutor, tbLivro.nomeLivro
@@ -92,14 +92,16 @@ SELECT tbAutor.nomeAutor, tbLivro.nomeLivro
 		ON tbLivro.codAutor = tbAutor.codAutor;
 
 /*Ex13*/
-SELECT COALESCE(tbAutor.nomeAutor, 'Autor não cadastrado') AS Nome_do_Autor, tbLivro.nomeLivro
+SELECT tbAutor.nomeAutor, tbLivro.nomeLivro 
 	FROM tbAutor
-		FULL JOIN tbLivro 
-			ON tbAutor.codAutor = tbLivro.codAutor;
+		FULL JOIN tbLivro
+			ON tbLivro.codAutor = tbAutor.codAutor
 
 /*Ex14*/
-SELECT tbLivro.nomeLivro, 'Ática' AS Editora
-	FROM tbLivro;
+SELECT tbEditora.nomeEditora, tbLivro.nomeLivro 
+	FROM tbEditora
+		CROSS JOIN tbLivro 
+	WHERE tbEditora.nomeEditora = 'Àtica'
 
 /*Ex15*/
 SELECT tbAutor.nomeAutor
@@ -114,7 +116,3 @@ SELECT tbGenero.nomeGenero
 		LEFT JOIN tbLivro 
 			ON tbGenero.codGenero = tbLivro.codGenero
 	WHERE tbLivro.codLivro IS NULL;
-
-
-
-
